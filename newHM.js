@@ -75,9 +75,10 @@ const newLetters = (incomingLetters) => {
     const letter = incomingLetters[i];
     const incomingLettersToLowerCase = letter.toLowerCase();
     const isLetterLow = letter === incomingLettersToLowerCase;
-    isLetterLow
-      ? result.push(letter.toUpperCase())
-      : result.push(letter.toLowerCase());
+    if (isLetterLow) {
+      result.push(letter.toUpperCase());
+    }
+    result.push(letter.toLowerCase());
   }
   return result;
 };
@@ -88,20 +89,21 @@ const newLetters = (incomingLetters) => {
   for (const letter of incomingLetters) {
     const letterToUpperCase = letter.toUpperCase();
     const isLetterBig = letter === letterToUpperCase;
-    isLetterBig
-      ? result.push(letter.toLowerCase())
-      : result.push(letter.toUpperCase());
+    if (isLetterBig) {
+      result.push(letter.toLowerCase());
+    } else result.push(letter.toUpperCase());
   }
   return result;
 };
 
 //map
 const newLetters = (incomingLetters) => {
-  return incomingLetters.map((letter) =>
-    letter === letter.toUpperCase()
-      ? letter.toLowerCase()
-      : letter.toUpperCase()
-  );
+  return incomingLetters.map((letter) => {
+    if (letter === letter.toUpperCase()) {
+      letter.toLowerCase();
+    }
+    letter.toUpperCase();
+  });
 };
 
 console.log(newLetters(letters));
@@ -112,7 +114,7 @@ console.log(newLetters(letters));
 const listOfNumbers = [1, 2, 3, 4, 5, 6];
 const fn = (numbers) => {
   return numbers.map((number, index) => {
-    return `Value: ${number}, Index: ${index}, Squared: ${number ** 2}`;
+    `Value: ${number}, Index: ${index}, Squared: ${number ** 2}`;
   });
 };
 
