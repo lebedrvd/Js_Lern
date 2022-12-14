@@ -36,13 +36,11 @@ const users = [
 const isMaleOrFemale = (userList) => {
   return userList.reduce(
     (result, user) => {
-      const fullName = `${user.first_name} ${user.last_name}`;
       const { first_name, last_name, ...newUser } = user;
+      const fullName = `${first_name} ${last_name}`;
       newUser.full_name = fullName;
-      if (newUser.gender === "Female") {
-        result.women.push(newUser);
-      } else result.men.push(newUser);
-
+      const genderIdentifier = newUser.gender === "Female" ? "women" : "men";
+      result[genderIdentifier].push(newUser);
       return result;
     },
     { men: [], women: [] }
